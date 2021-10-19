@@ -32,8 +32,6 @@ public class Calender {
 			driver.findElement(By.cssSelector("[class='datepicker-days'] [class = 'next']")).click();
 		}
 		
-		
-		
 		// Selecting Date
 		
 		List<WebElement> dates = driver.findElementsByXPath("//td[@class='day']");
