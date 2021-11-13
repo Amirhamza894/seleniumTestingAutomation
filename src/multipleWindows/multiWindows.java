@@ -18,6 +18,8 @@ public class multiWindows {
 		driver.get("https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp");
 		
 		driver.findElement(By.xpath("//a[normalize-space()='Help']")).click();
+//				driver.navigate().to("https://rahulshettyacademy.com/AutomationPractice/");
+
 		System.out.println(driver.getTitle());
 		Set<String> ids = driver.getWindowHandles();
 		Iterator<String> idIterat = ids.iterator();

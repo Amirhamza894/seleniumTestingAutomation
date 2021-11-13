@@ -36,7 +36,20 @@ public class javascriptExecutorCncptClss {
 		
 		WebElement loginbtn = driver.findElement(By.xpath("//div[text()='Login']"));
 		
-		flash(loginbtn, driver);
+		flash(loginbtn, driver); //highlight
+		drawBorder(loginbtn, driver);  //Drawborder
+//		generateAlert(driver, "there is a bug in this button");  //alert message
+		clickElementByJS(loginbtn, driver);  //click on element by javascript
+		refreshBrowserByJS(driver);    // refresh the page by javascript
+		System.out.println(getTitlebyJS(driver));
+		System.out.println(getPageText(driver));
+		driver.navigate().back();
+//		scrollPagebyJS(driver);
+		
+		WebElement link = driver.findElement(By.xpath("//h6[text()='Contact Us']"));
+		
+		scrollIntoView(link, driver);
+		
 		
 	}
 	
@@ -62,5 +75,63 @@ public class javascriptExecutorCncptClss {
 			
 		}
 	}
+	
+	public static void drawBorder(WebElement element, WebDriver driver)
+	{
+		JavascriptExecutor js = ((JavascriptExecutor)driver);
+		js.executeScript("arguments[0].style.border='2px solid red'", element);
+	}
+	
+	public static void generateAlert(WebDriver driver, String message)
+	{
+		JavascriptExecutor js = ((JavascriptExecutor)driver);
+		js.executeScript("alert('"+message+"')");
+	}
+	
+	public static void clickElementByJS(WebElement element, WebDriver driver)
+	{
+		JavascriptExecutor js = ((JavascriptExecutor)driver);
+		js.executeScript("arguments[0].click();", element);
+	}
+	public static void refreshBrowserByJS(WebDriver driver)
+	{
+		JavascriptExecutor js = ((JavascriptExecutor)driver);
+		js.executeScript("history.go(0)");
+	}
 
+	public static String getTitlebyJS(WebDriver driver)
+	{
+		JavascriptExecutor js = ((JavascriptExecutor)driver);
+		String title = js.executeScript("return document.title;").toString();
+		return title;
+	}
+	
+	public static String getPageText(WebDriver driver) 
+	{
+		JavascriptExecutor js = ((JavascriptExecutor)driver);
+		String pageText = js.executeScript("return document.documentElement.innerText;").toString();
+		return pageText;
+	}
+	
+	public static void scrollPagebyJS(WebDriver driver)
+	{
+		JavascriptExecutor js = ((JavascriptExecutor)driver);
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
+	
+	public static void scrollIntoView(WebElement element, WebDriver driver)
+	{
+		JavascriptExecutor js = ((JavascriptExecutor)driver);
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+	}
 }
+
+
+
+
+
+
+
+
+
+
